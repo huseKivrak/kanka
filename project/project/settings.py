@@ -44,13 +44,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
 
-    # main
+    # api, general
     'app',
     'rest_framework',
     'corsheaders',
     'debug_toolbar',
 
-
+    # celery
+    'celery',
+    'django_celery_beat',
 
 
 ]
