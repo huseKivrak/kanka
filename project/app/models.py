@@ -18,7 +18,7 @@ class Letter (models.Model):
         (READ, 'Read'),
     ]
 
-    '''Actual datetime when letter was created'''
+    # # Actual generated datetime
     created_at = models.DateTimeField(
         default = timezone.now,
     )
@@ -28,7 +28,7 @@ class Letter (models.Model):
         blank=True,
     )
 
-    '''User-defined 'date' on letter'''
+    # # 'Date' user field for letter
     date = models.CharField(
         max_length=2500,
         blank=True,
@@ -56,6 +56,7 @@ class Letter (models.Model):
         help_text='Regards,'
     )
 
+    # TODO: allow users to upload signature image
     signature = models.CharField(
         max_length=2500,
         blank=True,
@@ -67,6 +68,7 @@ class Letter (models.Model):
         help_text='P.S. [message]'
     )
 
+    # # 'draft'(default), 'sent', 'delivered', 'read'
     status = models.CharField(
         max_length=25,
         choices=STATUS_CHOICES,
@@ -95,9 +97,15 @@ Envelope Model
 '''
 class Envelope (models.Model):
 
+    created_at = models.DateTimeField(
+        default = timezone.now,
+    )
+
+
     return_address = models.CharField(
         max_length=2500,
         blank=True,
+        verbose_name='Return Address',
     )
 
     address = models.CharField(
@@ -105,7 +113,7 @@ class Envelope (models.Model):
         blank=True,
     )
 
-    # TODO : stamps as Images (with Pillow?)
+    # TODO : stamp as ImageField (with Pillow?) or own model?
     # stamp = models.ImageField(
     #     upload_to='media/',
     #     blank=True,
