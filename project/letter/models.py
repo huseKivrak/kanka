@@ -1,7 +1,8 @@
 from django.db import models
 from django.urls import reverse
-from django.utils import timezone
 from django.utils.text import slugify
+from authuser.models import User
+
 # from PIL import Image
 
 
@@ -18,17 +19,13 @@ class Letter (models.Model):
         (READ, 'Read'),
     ]
 
-    # # Actual generated datetime
-    created_at = models.DateTimeField(
-        default = timezone.now,
-    )
 
     title = models.CharField(
         max_length=100,
         blank=True,
     )
 
-    # # 'Date' user field for letter
+    # 'Date' user field for letter
     date = models.CharField(
         max_length=2500,
         blank=True,
@@ -68,15 +65,24 @@ class Letter (models.Model):
         help_text='P.S. [message]'
     )
 
-    # # 'draft'(default), 'sent', 'delivered', 'read'
+    # 'draft'(default), 'sent', 'delivered', 'read'
     status = models.CharField(
         max_length=25,
         choices=STATUS_CHOICES,
         default=DRAFT,
     )
 
-    class Meta:
-        ordering = ('-created_at',)
+    author = models.ForeignKey(
+        User,
+        related_name='authored_letters',
+        on_delete=models.CASCADE
+    )
+
+    recipient = models.ForeignKey(
+        User,
+        related_name='received_letters',
+        on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return self.title
@@ -88,19 +94,23 @@ class Letter (models.Model):
     def get_absolute_url(self):
         return reverse('letter_detail', kwargs={'letter_id': self.id})
 
-
+    @property
+    def current_owner(self):
+        if self.status == 'draft':
+            return self.author
+        elif self.status == 'sent':
+            return "in_transit"
+        elif self.status == 'delivered' or self.status == 'read':
+            return self.recipient
 
 
 '''
 Envelope Model
 
 '''
+
+
 class Envelope (models.Model):
-
-    created_at = models.DateTimeField(
-        default = timezone.now,
-    )
-
 
     return_address = models.CharField(
         max_length=2500,
@@ -125,6 +135,10 @@ class Envelope (models.Model):
         blank=True,
     )
 
+    letter = models.OneToOneField(
+        Letter,
+        on_delete=models.CASCADE,
+    )
 
     def __str__(self):
         return self.address
@@ -135,4 +149,3 @@ class Envelope (models.Model):
 
     def get_absolute_url(self):
         return reverse('envelope_detail', kwargs={'envelope_id': self.id})
-

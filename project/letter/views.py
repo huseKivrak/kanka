@@ -1,5 +1,5 @@
 from rest_framework import generics
-from app.models import Letter, Envelope
+from .models import Letter, Envelope
 from .serializers import LetterSerializer, EnvelopeSerializer
 
 

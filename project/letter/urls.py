@@ -3,6 +3,6 @@ from .views import ListLetters
 
 
 urlpatterns = [
-    path('api/letters', ListLetters.as_view(), name='list_letters'),
+    path('/letters', ListLetters.as_view(), name='list_letters'),
 ]
 

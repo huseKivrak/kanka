@@ -32,6 +32,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'authuser.User'
 
 # Application definition
 
@@ -44,18 +45,23 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
 
-    # api, general
     'app',
+    'psycopg2',
     'rest_framework',
     'corsheaders',
     'debug_toolbar',
+    'dotenv',
+    'letter',
+    'authuser',
+    'helpers',
+
 
     # celery
     'celery',
     'django_celery_beat',
-
-
 ]
+
+
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
@@ -86,7 +92,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware'
+    'corsheaders.middleware.CorsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware'
 ]
 
 
@@ -118,8 +125,9 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'kanka',
+        'USER': 'huse',
     }
 }
 
