@@ -15,7 +15,8 @@ class AuthUserAPIView(GenericAPIView):
 
 
 class RegisterAPIView(GenericAPIView):
-    authentication_classes = []
+    authentication_classes = ()
+    permission_classes = ()
 
     serializer_class = RegisterSerializer
 
@@ -30,7 +31,8 @@ class RegisterAPIView(GenericAPIView):
 
 
 class LoginAPIView(GenericAPIView):
-    authentication_classes = []
+    authentication_classes = ()
+    permission_classes = ()
 
     serializer_class = LoginSerializer
 
