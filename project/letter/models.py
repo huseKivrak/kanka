@@ -50,7 +50,8 @@ class Letter (models.Model):
     closer = models.CharField(
         max_length=2500,
         blank=True,
-        help_text='Regards,'
+        help_text='Regards,',
+        verbose_name='Complimentary close'
     )
 
     # TODO: allow users to upload signature image
