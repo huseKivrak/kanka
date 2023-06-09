@@ -14,6 +14,9 @@ class AuthUserAPIView(GenericAPIView):
         return response.Response({'user': serializer.data})
 
 
+
+
+
 class RegisterAPIView(GenericAPIView):
     authentication_classes = ()
     permission_classes = ()
@@ -48,3 +51,6 @@ class LoginAPIView(GenericAPIView):
 
         return response.Response({'message': "Invalid credentials, try again"},
                                  status=status.HTTP_401_UNAUTHORIZED)
+
+
+
