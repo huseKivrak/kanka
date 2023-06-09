@@ -62,7 +62,6 @@ INSTALLED_APPS = [
 ]
 
 
-
 # CORS_ALLOW_ALL_ORIGINS = True
 # CORS_ALLOW_CREDENTIALS = True
 # CORS_ALLOWED_ORIGINS = [
@@ -73,13 +72,22 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
 
+
+
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
+        'authuser.jwt.JWTAuthentication',
     ],
 
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ]
+
+
+
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [
+    #     'rest_framework.authentication.TokenAuthentication',
+    # ],
+
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ]
 
 }
 
@@ -95,8 +103,6 @@ MIDDLEWARE = [
     # 'corsheaders.middleware.CorsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware'
 ]
-
-
 
 
 ROOT_URLCONF = 'project.urls'
