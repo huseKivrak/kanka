@@ -33,7 +33,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = 'authuser.User'
+
 
 # Application definition
 
@@ -48,13 +48,15 @@ INSTALLED_APPS = [
 
     'app',
     'psycopg2',
+
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
+
     'debug_toolbar',
     'dotenv',
     'letter',
-    'authuser',
+    # 'authuser',
     'helpers',
 
 
@@ -64,7 +66,7 @@ INSTALLED_APPS = [
 ]
 
 
-# CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = True
 
 REST_FRAMEWORK = {
 
@@ -122,13 +124,15 @@ SIMPLE_JWT = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware', #CORS
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'corsheaders.middleware.CorsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware'
 ]
 
