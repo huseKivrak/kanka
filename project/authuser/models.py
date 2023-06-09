@@ -113,3 +113,10 @@ class User(AbstractBaseUser, PermissionsMixin, TrackingModel):
             settings.SECRET_KEY, algorithm='HS256')
 
         return token
+
+    # set list of ids for received letters
+    @property
+    def received_letter_ids(self):
+        return [letter.id for letter in self.received_letters.all()]
+
+    # todo: draft letter ids
