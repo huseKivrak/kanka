@@ -79,9 +79,11 @@ class Letter (models.Model):
         on_delete=models.CASCADE
     )
 
-    recipient = models.ForeignKey(
+    recipient = models.OneToOneField(
         User,
         related_name='received_letters',
+        null=True,
+        blank=True,
         on_delete=models.CASCADE
     )
 
