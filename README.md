@@ -15,5 +15,5 @@ Inspired by traditional correspondence, [kanka](https://en.wiktionary.org/wiki/k
 
 # tech
 
-- **Django**, **Django Rest Framework**
+- **Django**, **Django Rest Framework**+ **Simple JWT**
 - **Celery Beat**
