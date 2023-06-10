@@ -1,8 +1,11 @@
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
-
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
+
+from letter.models import Letter
+from letter.serializers import LetterSerializer
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -10,13 +13,13 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
     @classmethod
     def get_token(cls, user):
+
         token = super().get_token(user)
 
-        # Add custom claims
         token['username'] = user.username
-        # ...
 
         return token
+
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
@@ -31,5 +34,13 @@ def getRoutes(request):
         '/api/token/refresh',
     ]
 
-
     return Response(routes)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def getLetters(request):
+    user = request.user
+    letters = Letter.objects.filter(current_owner=user)
+    serializer = LetterSerializer(letters, many=True)
+    return Response(serializer.data)

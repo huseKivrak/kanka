@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from app.models import Letter, Envelope
+from letter.models import Letter, Envelope
 
 class LetterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -10,4 +10,3 @@ class EnvelopeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Envelope
         fields = '__all__'
-
