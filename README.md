@@ -17,4 +17,3 @@ Inspired by traditional correspondence, [kanka](https://en.wiktionary.org/wiki/k
 
 - **Django**, **Django Rest Framework**
 - **Celery Beat**
-- **Vite**
