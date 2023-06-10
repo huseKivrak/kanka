@@ -1,13 +1,13 @@
 from django.db import models
 from django.urls import reverse
-from django.utils.text import slugify
 from django.contrib.auth.models import User
+from helpers.models import TrackingModel
 
 
 # from PIL import Image
 
 
-class Letter (models.Model):
+class Letter (TrackingModel):
     DRAFT = 'draft'
     SENT = 'sent'
     DELIVERED = 'delivered'
@@ -19,7 +19,6 @@ class Letter (models.Model):
         (DELIVERED, 'Delivered'),
         (READ, 'Read'),
     ]
-
 
     title = models.CharField(
         max_length=100,
@@ -91,10 +90,6 @@ class Letter (models.Model):
     def __str__(self):
         return self.title
 
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
-        super(Letter, self).save(*args, **kwargs)
-
     def get_absolute_url(self):
         return reverse('letter_detail', kwargs={'letter_id': self.id})
 
@@ -103,8 +98,8 @@ class Letter (models.Model):
         if self.status == 'draft':
             return self.author
         elif self.status == 'sent':
-            return "in_transit"
-        elif self.status == 'delivered' or self.status == 'read':
+            return 'in transit'
+        elif self.status in ['delivered', 'read']:
             return self.recipient
 
 
@@ -114,7 +109,7 @@ Envelope Model
 '''
 
 
-class Envelope (models.Model):
+class Envelope (TrackingModel):
 
     return_address = models.CharField(
         max_length=2500,
@@ -146,10 +141,6 @@ class Envelope (models.Model):
 
     def __str__(self):
         return self.address
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.address)
-        super(Envelope, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('envelope_detail', kwargs={'envelope_id': self.id})
