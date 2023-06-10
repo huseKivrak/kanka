@@ -54,8 +54,6 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'dotenv',
     'letter',
-    # 'authuser',
-    # 'helpers',
 
 
     # celery
