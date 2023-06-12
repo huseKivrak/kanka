@@ -31,11 +31,6 @@ class Letter (TrackingModel):
         blank=True,
     )
 
-    header = models.CharField(
-        max_length=2500,
-        blank=True,
-    )
-
     opener = models.CharField(
         max_length=2500,
         blank=True,
@@ -79,11 +74,9 @@ class Letter (TrackingModel):
         on_delete=models.CASCADE
     )
 
-    recipient = models.OneToOneField(
+    recipient = models.ForeignKey(
         User,
         related_name='received_letters',
-        null=True,
-        blank=True,
         on_delete=models.CASCADE
     )
 
@@ -95,17 +88,14 @@ class Letter (TrackingModel):
 
     @property
     def current_owner(self):
-        if self.status == 'draft':
+        if self.status == 'draft' or self.status == 'sent':
             return self.author
-        elif self.status == 'sent':
-            return 'in transit'
         elif self.status in ['delivered', 'read']:
             return self.recipient
 
 
 '''
 Envelope Model
-
 '''
 
 
