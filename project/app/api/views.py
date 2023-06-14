@@ -85,4 +85,4 @@ class LetterDetail(APIView):
             return Response({'message': 'Letter does not exist or no delete permission'}, status=status.HTTP_404_NOT_FOUND)
 
         letter.delete()
-        return Response({'message': 'Letter has been deleted'}, status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_204_NO_CONTENT)

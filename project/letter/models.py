@@ -4,9 +4,6 @@ from django.contrib.auth.models import User
 from helpers.models import TrackingModel
 
 
-# from PIL import Image
-
-
 class Letter (TrackingModel):
     DRAFT = 'draft'
     SENT = 'sent'
@@ -86,12 +83,8 @@ class Letter (TrackingModel):
     def get_absolute_url(self):
         return reverse('letter_detail', kwargs={'letter_id': self.id})
 
-    @property
-    def current_owner(self):
-        if self.status == 'draft' or self.status == 'sent':
-            return self.author
-        elif self.status in ['delivered', 'read']:
-            return self.recipient
+    def get_status(self):
+        return self.status
 
 
 '''
