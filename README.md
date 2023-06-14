@@ -1,4 +1,5 @@
 # kanka
+{currently in development!}
 
 kanka ~~is~~ _will be_ a virtual letter writing and delivery service.
 
@@ -19,6 +20,7 @@ Inspired by traditional correspondence, [kanka](<https://en.wiktionary.org/wiki/
 - **Django**, **Django Rest Framework**
   - Simple JWT, Corsheaders
   - Celery + Celery Beat
+  - ZipCodeAPI
 
 ### frontend
 
