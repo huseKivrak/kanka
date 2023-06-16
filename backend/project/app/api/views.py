@@ -26,18 +26,24 @@ class MyTokenObtainPairView(TokenObtainPairView):
 class LetterList(APIView):
     permission_classes = [IsAuthenticated]
 
+    ''' Get all letters delivered to a user'''
     def get(self, request):
         user = request.user
-        authored_letters = Letter.objects.filter(
-            author=user,
-            status=Letter.DRAFT
-        )
-        received_letters = Letter.objects.filter(
-            recipient=user,
-            status__in=[Letter.DELIVERED, Letter.READ]
-        )
-        letters = authored_letters.union(received_letters)
 
+        # authored_letters = Letter.objects.filter(
+        #     author=user,
+        #     status=Letter.DRAFT
+        # )
+        # received_letters = Letter.objects.filter(
+        #     recipient=user,
+        #     status__in=[Letter.DELIVERED, Letter.READ]
+        # )
+        # letters = authored_letters.union(received_letters)
+
+        letters = Letter.objects.filter(
+            recipient=user,
+            status=Letter.DELIVERED
+        )
         serializer = LetterSerializer(letters, many=True)
         return Response(serializer.data)
 
@@ -49,6 +55,34 @@ class LetterList(APIView):
             serializer.save(author=user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class DeliveredLetterDetail(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self, pk, user):
+        try:
+            return Letter.objects.get(id=pk, recipient=user, status=Letter.DELIVERED)
+        except Letter.DoesNotExist:
+            return None
+
+    def get(self, request, pk):
+        letter = self.get_object(pk, request.user)
+        if letter is None:
+            return Response({'message': 'Letter does not exist or no view permission'}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = LetterSerializer(letter)
+        return Response(serializer.data)
+
+    def delete(self, request, pk):
+        letter = self.get_object(pk, request.user)
+        if letter is None:
+            return Response({'message': 'Letter does not exist or no delete permission'}, status=status.HTTP_404_NOT_FOUND)
+
+        letter.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 
 
 class LetterDetail(APIView):
@@ -86,3 +120,5 @@ class LetterDetail(APIView):
 
         letter.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
