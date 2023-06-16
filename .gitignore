@@ -140,5 +140,4 @@ GitHub.sublime-settings
 # All migrations
 **/migrations/*.py
 
-# ignore package-lock in frontend:
-frontend/package-lock.json
+
