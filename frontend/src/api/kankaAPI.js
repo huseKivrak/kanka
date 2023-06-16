@@ -1,4 +1,4 @@
-import axiosInstance from "./axiosInstance";
+import axiosInstance from '../auth/axiosInstance';
 
 async function makeRequest(method, endpoint, data = null) {
   try {
@@ -17,14 +17,16 @@ async function makeRequest(method, endpoint, data = null) {
   }
 }
 
-export const getLetters = () => makeRequest("get", "/letters/");
+export const getLetters = () => makeRequest("get", "/api/letters/");
 
-export const createLetter = (letter) =>
-  makeRequest("post", "/letters/", letter);
+export const createLetter = (letterData) =>
+  makeRequest("post", "/api/letters/", letterData);
 
-export const getLetter = (id) => makeRequest("get", `/letters/${id}`);
+export const getLetter = (id) => makeRequest("get", `/api/letters/${id}`);
+
+export const readLetter = (id) => makeRequest("get", `/api/letters/${id}/read`);
 
 export const updateLetter = (id, updates) =>
-  makeRequest("put", `/letters/${id}`, updates);
+  makeRequest("put", `/api/letters/${id}`, updates);
 
-export const deleteLetter = (id) => makeRequest("delete", `/letters/${id}`);
+export const deleteLetter = (id) => makeRequest("delete", `/api/letters/${id}`);

@@ -5,6 +5,9 @@ import { AuthProvider } from "./context/AuthContext";
 import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
+import LetterDetail from './pages/LetterDetail';
+import ErrorPage from './pages/ErrorPage';
+
 
 function App() {
   return (
@@ -15,8 +18,10 @@ function App() {
           <Routes>
             <Route element={<PrivateRoutes />}>
               <Route element={<HomePage />} path="/" />
+              <Route element={<LetterDetail />} path="/letters/:id" />
             </Route>
             <Route element={<LoginPage />} path="/login" />
+            <Route element={<ErrorPage />} path="*" />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
