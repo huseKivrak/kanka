@@ -1,6 +1,7 @@
 # kanka
+{currently in development!}
 
-kanka ~~is~~ _will be_ a virtual letter writing and delivery service.
+kanka is a virtual letter writing and delivery service.
 
 Inspired by traditional correspondence, [kanka](<https://en.wiktionary.org/wiki/kanka#:~:text=kanka%20(definite%20accusative%20kankay%C4%B1%2C%20plural,colloquial)%20bro%2C%20mate%2C%20pal>) (colloquial term for "best buddy" or "dude" in Turkish) combines the charms of epistolary dialogue with the conveniences of digital communication; i.e. no 'waiting in line at the post office'
 
@@ -19,6 +20,7 @@ Inspired by traditional correspondence, [kanka](<https://en.wiktionary.org/wiki/
 - **Django**, **Django Rest Framework**
   - Simple JWT, Corsheaders
   - Celery + Celery Beat
+  - ZipCodeAPI
 
 ### frontend
 
