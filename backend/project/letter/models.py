@@ -19,7 +19,6 @@ class Letter (TrackingModel):
 
     title = models.CharField(
         max_length=100,
-        blank=True,
     )
 
     # 'Date' user field for letter
@@ -36,7 +35,6 @@ class Letter (TrackingModel):
 
     body = models.CharField(
         max_length=2500,
-        blank=True,
     )
 
     closer = models.CharField(
