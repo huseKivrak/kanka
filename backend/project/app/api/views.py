@@ -57,6 +57,7 @@ class LetterList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+'''Individual delivered letter'''
 class DeliveredLetterDetail(APIView):
     permission_classes = [IsAuthenticated]
 

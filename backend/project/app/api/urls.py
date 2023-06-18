@@ -5,7 +5,7 @@ from .views import MyTokenObtainPairView, LetterList, LetterDetail, DeliveredLet
 urlpatterns = [
     path('letters/', LetterList.as_view(), name='letters'),
     path('letters/<int:pk>/', LetterDetail.as_view(), name='letter-detail'),
-    path('letters/<int:pk>/read/', DeliveredLetterDetail.as_view(), name='letter-read'),
+    path('letters/delivered/<int:pk>/', DeliveredLetterDetail.as_view(), name='letter-read'),
     path('token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
