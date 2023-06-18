@@ -7,8 +7,8 @@ const Header = () => {
     const { user, logoutUser } = useContext(AuthContext)
     const [shouldNavigate, setShouldNavigate] = useState(false);
 
-    const handleLogout = () => {
-        const success = logoutUser();
+    const handleLogout = async () => {
+        const success = await logoutUser();
         if (success) {
             setShouldNavigate(true);
         }
