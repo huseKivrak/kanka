@@ -17,11 +17,17 @@ class Letter (TrackingModel):
         (READ, 'Read'),
     ]
 
+    status = models.CharField(
+        max_length=10,
+        choices=STATUS_CHOICES,
+        default=DRAFT,
+    )
+
     title = models.CharField(
         max_length=100,
     )
 
-    # 'Date' user field for letter
+    # 'date' is just another text field. actual dates handled by TrackingModel
     date = models.CharField(
         max_length=2500,
         blank=True,
@@ -44,7 +50,6 @@ class Letter (TrackingModel):
         verbose_name='Complimentary close'
     )
 
-    # TODO: allow users to upload signature image
     signature = models.CharField(
         max_length=2500,
         blank=True,
@@ -56,17 +61,11 @@ class Letter (TrackingModel):
         help_text='P.S. [message]'
     )
 
-    # 'draft'(default), 'sent', 'delivered', 'read'
-    status = models.CharField(
-        max_length=25,
-        choices=STATUS_CHOICES,
-        default=DRAFT,
-    )
 
     author = models.ForeignKey(
         User,
         related_name='authored_letters',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
 
     recipient = models.ForeignKey(
@@ -84,44 +83,3 @@ class Letter (TrackingModel):
     def get_status(self):
         return self.status
 
-
-'''
-Envelope Model
-'''
-
-
-class Envelope (TrackingModel):
-
-    return_address = models.CharField(
-        max_length=2500,
-        blank=True,
-        verbose_name='Return Address',
-    )
-
-    address = models.CharField(
-        max_length=2500,
-        blank=True,
-    )
-
-    # TODO : stamp as ImageField (with Pillow?) or own model?
-    # stamp = models.ImageField(
-    #     upload_to='media/',
-    #     blank=True,
-    #     null=True,
-    # )
-
-    stamp = models.CharField(
-        max_length=2500,
-        blank=True,
-    )
-
-    letter = models.OneToOneField(
-        Letter,
-        on_delete=models.CASCADE,
-    )
-
-    def __str__(self):
-        return self.address
-
-    def get_absolute_url(self):
-        return reverse('envelope_detail', kwargs={'envelope_id': self.id})
