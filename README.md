@@ -1,5 +1,5 @@
 # kanka
-{currently in development; latest backend here: https://github.com/huseKivrak/kankaAPI}
+{currently in development; latest backend here: https://github.com/huseKivrak/kankaAPI }
 
 kanka is a virtual letter writing and delivery service.
 
