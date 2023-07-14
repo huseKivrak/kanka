@@ -45,7 +45,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "chartreuse": {
+        chartreuse: {
           50: "#e3e5e1",
 
           100: "#c8cdc4",
@@ -65,9 +65,8 @@ module.exports = {
           800: "#2a2e27",
 
           900: "#181a16",
-
         },
-        "spring_green": {
+        spring_green: {
           50: "#e2e6e4",
 
           100: "#c4cdc9",
@@ -87,9 +86,8 @@ module.exports = {
           800: "#272e2b",
 
           900: "#161a18",
-
         },
-        "cyan": {
+        cyan: {
           50: "#e1e5e5",
 
           100: "#c4cdcd",
@@ -109,9 +107,8 @@ module.exports = {
           800: "#272e2e",
 
           900: "#161a1a",
-
         },
-        "blue": {
+        blue: {
           50: "#e5e5e9",
 
           100: "#cacad2",
@@ -131,9 +128,8 @@ module.exports = {
           800: "#2b2b33",
 
           900: "#19191e",
-
         },
-        "violet": {
+        violet: {
           50: "#e7e5e9",
 
           100: "#cdc9d1",
@@ -153,9 +149,8 @@ module.exports = {
           800: "#2f2b33",
 
           900: "#1b191d",
-
         },
-        "rose": {
+        rose: {
           50: "#e8e3e6",
 
           100: "#d1c9cd",
@@ -175,9 +170,8 @@ module.exports = {
           800: "#332b2f",
 
           900: "#1d191b",
-
         },
-        "red": {
+        red: {
           50: "#e9e5e5",
 
           100: "#d1c9c9",
@@ -197,9 +191,8 @@ module.exports = {
           800: "#332b2b",
 
           900: "#1d1919",
-
         },
-        "yellow": {
+        yellow: {
           50: "#e5e5e1",
 
           100: "#ccccc3",
@@ -219,9 +212,8 @@ module.exports = {
           800: "#2d2d26",
 
           900: "#191915",
-
         },
-      }
+      },
     },
   },
   plugins: [

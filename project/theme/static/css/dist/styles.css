@@ -859,31 +859,6 @@ select {
   border-width: 1px;
 }
 
-.bg-spring_green-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(196 205 201 / var(--tw-bg-opacity));
-}
-
-.bg-spring_green-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(168 182 175 / var(--tw-bg-opacity));
-}
-
-.bg-spring_green-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(76 89 83 / var(--tw-bg-opacity));
-}
-
-.bg-rose-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(188 175 182 / var(--tw-bg-opacity));
-}
-
-.bg-rose-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 201 205 / var(--tw-bg-opacity));
-}
-
 .bg-yellow-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(204 204 195 / var(--tw-bg-opacity));
@@ -947,34 +922,9 @@ select {
   letter-spacing: 0.025em;
 }
 
-.text-blue-100 {
-  --tw-text-opacity: 1;
-  color: rgb(202 202 210 / var(--tw-text-opacity));
-}
-
-.text-green-100 {
-  --tw-text-opacity: 1;
-  color: rgb(220 252 231 / var(--tw-text-opacity));
-}
-
-.text-green-300 {
-  --tw-text-opacity: 1;
-  color: rgb(134 239 172 / var(--tw-text-opacity));
-}
-
-.text-spring_green-300 {
-  --tw-text-opacity: 1;
-  color: rgb(141 158 150 / var(--tw-text-opacity));
-}
-
 .text-spring_green-400 {
   --tw-text-opacity: 1;
   color: rgb(114 135 124 / var(--tw-text-opacity));
-}
-
-.text-spring_green-200 {
-  --tw-text-opacity: 1;
-  color: rgb(168 182 175 / var(--tw-text-opacity));
 }
 
 .hover\:shadow-lg:hover {
