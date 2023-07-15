@@ -864,6 +864,11 @@ select {
   background-color: rgb(204 204 195 / var(--tw-bg-opacity));
 }
 
+.bg-spring_green-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(114 135 124 / var(--tw-bg-opacity));
+}
+
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -925,6 +930,51 @@ select {
 .text-spring_green-400 {
   --tw-text-opacity: 1;
   color: rgb(114 135 124 / var(--tw-text-opacity));
+}
+
+.text-yellow-100 {
+  --tw-text-opacity: 1;
+  color: rgb(204 204 195 / var(--tw-text-opacity));
+}
+
+.text-chartreuse-600 {
+  --tw-text-opacity: 1;
+  color: rgb(81 88 74 / var(--tw-text-opacity));
+}
+
+.text-chartreuse-200 {
+  --tw-text-opacity: 1;
+  color: rgb(174 181 167 / var(--tw-text-opacity));
+}
+
+.text-chartreuse-300 {
+  --tw-text-opacity: 1;
+  color: rgb(148 157 140 / var(--tw-text-opacity));
+}
+
+.text-chartreuse-100 {
+  --tw-text-opacity: 1;
+  color: rgb(200 205 196 / var(--tw-text-opacity));
+}
+
+.text-chartreuse-900 {
+  --tw-text-opacity: 1;
+  color: rgb(24 26 22 / var(--tw-text-opacity));
+}
+
+.text-chartreuse-700 {
+  --tw-text-opacity: 1;
+  color: rgb(62 67 57 / var(--tw-text-opacity));
+}
+
+.hover\:bg-spring_green-400:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(114 135 124 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-spring_green-600:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(76 89 83 / var(--tw-bg-opacity));
 }
 
 .hover\:shadow-lg:hover {

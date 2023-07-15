@@ -1,0 +1,6 @@
+{% extends 'base.html' %} {% block title %}{{request.user}}{% endblock title %}
+{% block content %}
+<h1 class="text-chartreuse-700">{{request.user}}</h1>
+<h2 class="text-chartreuse-200">: {{request.user.zip_code}}</h2>
+
+{% endblock content %}
