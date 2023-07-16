@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
 from . forms import CustomUserCreationForm
+from letters.models import mailbox_count_for
 
 
 def register(request):
@@ -24,7 +25,13 @@ def login(request):
 
 
 def profile(request):
-    return render(request, "profile.html")
+    user = request.user
+    mailbox_count = mailbox_count_for(user)
+    context = {
+        'user':user,
+        'mailbox_count': mailbox_count
+    }
+    return render(request, "profile.html", context)
 
 
 def logout(request):

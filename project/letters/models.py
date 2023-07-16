@@ -103,4 +103,4 @@ def mailbox_count_for(user):
     """
     returns number of unread letters for a given user
     """
-    return Letter.delivereds.filter(owner=user).count()
+    return Letter.letters.delivereds().filter(owner=user).count()
