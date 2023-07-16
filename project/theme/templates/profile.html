@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block title %}{{request.user}}{% endblock title %}
 {% block content %}
 <h1 class="text-chartreuse-700">{{request.user}}</h1>
-<h2 class="text-chartreuse-200">: {{request.user.zip_code}}</h2>
+<button class="bg-chartreuse-700 hover:bg-chartreuse-800 text-white font-bold py-2 px-4 rounded">
+  <a href="/letters/create/">logout</a>
 
 {% endblock content %}

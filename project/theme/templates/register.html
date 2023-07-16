@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}kanka: register{% endblock %}
+
 {% block content%}
   <form method="post" action="/accounts/register/">
-    {% csrf_token %} {{ form.as_p }}
-    <button type="submit">submit</button>
-{% endblock %}
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">register</button>
+{% endblock content%}
