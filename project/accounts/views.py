@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from . forms import CustomUserCreationForm
 
 
 def login(request):
@@ -8,4 +9,11 @@ def profile(request):
     return render(request, "profile.html")
 
 def register(request):
-    return render(request, "register.html")
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = CustomUserCreationForm()
+    return render(request, "register.html", {'form': form})
