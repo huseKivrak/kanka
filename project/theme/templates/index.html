@@ -1,11 +1,8 @@
 {% extends 'base.html' %}
 {% block title %}welcome{% endblock %}
 {% block content %}
-<div class="container mx-auto flex flex-col justify-center items-center h-screen">
   <h1 class="text-chartreuse-100 mb-4">welcome to kanka</h1>
-
   {% if not user.is_authenticated %}
   <a class="inline-block py-2 px-3 text-chartreuse-100 bg-crimson-400 hover:bg-crimson-600 rounded-sm" href="/accounts/register/">sign up</a>
   {% endif %}
-</div>
 {% endblock content %}
