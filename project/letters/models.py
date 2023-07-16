@@ -1,9 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils import timezone
-from accounts.models import CustomUser
 from core.utils import TrackingModel
 
-# Create your models here.
+User = get_user_model()
+
 class LetterQuerySet(models.QuerySet):
     def drafts(self):
         return self.filter(status='draft')
@@ -52,25 +53,27 @@ class Letter(TrackingModel):
     )
 
     author = models.ForeignKey(
-        CustomUser,
+        User,
         on_delete=models.SET_NULL,
         null=True,
         related_name='authored_letters',
     )
 
     recipient = models.ForeignKey(
-        CustomUser,
+        User,
         on_delete=models.CASCADE,
         related_name='received_letters',
     )
 
     owner = models.ForeignKey(
-        CustomUser,
+        User,
         on_delete=models.CASCADE,
         null=True,
         related_name='owned_letters',
         default=author,
     )
+
+    letters = LetterQuerySet.as_manager()
 
     def send(self):
         self.status = 'sent'
@@ -92,7 +95,12 @@ class Letter(TrackingModel):
     def is_owned_by(self, user):
         return self.owner == user
 
-    letters = LetterQuerySet.as_manager()
-
     def __str__(self):
         return self.title
+
+
+def mailbox_count_for(user):
+    """
+    returns number of unread letters for a given user
+    """
+    return Letter.delivereds.filter(owner=user).count()
