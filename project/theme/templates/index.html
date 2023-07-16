@@ -1,15 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}welcome{% endblock %}
 {% block content %}
-<div class="container mx-auto">
-  <h1 class="text-chartreuse-100 block">Home</h1>
-  <p>
-    Good truth ultimate ideal pious justice moral christian. Society inexpedient
-    justice suicide hatred society christianity morality play. Of deceptions
-    chaos chaos noble spirit truth endless passion value. Right insofar dead
-    passion battle god revaluation christian contradict faith war sexuality god
-    eternal-return. Faithful strong sexuality sea faithful faithful. Grandeur
-    reason contradict.
-  </p>
+<div class="container mx-auto flex flex-col justify-center items-center h-screen">
+  <h1 class="text-chartreuse-100 mb-4">welcome to kanka</h1>
+
+  {% if not user.is_authenticated %}
+  <a class="inline-block py-2 px-3 text-chartreuse-100 bg-crimson-400 hover:bg-crimson-600 rounded-sm" href="/accounts/register/">sign up</a>
+  {% endif %}
 </div>
 {% endblock content %}

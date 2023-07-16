@@ -10,23 +10,26 @@
   </head>
 
   <body class="bg-spring_green-400 font-serif leading-normal tracking-wide">
-    <nav
-      class="bg-crimson-400 w-full flex relative justify-between items-center mx-auto px-8 h-20 text-yellow-100"
-    >
+<!-- navbar -->
+    <nav class="w-full flex relative justify-between items-center mx-auto px-8 h-20 text-yellow-100">
       <div class="inline-flex">
-        <a
-          class="inline-block py-2 px-3 hover:bg-crimson-400 rounded-sm"
-          href="/"
-        >
-          <div
-            class="flex items-center relative cursor-pointer whitespace-nowrap"
-          >
+        <a class="inline-block py-2 px-3 hover:bg-crimson-600 rounded-sm" href="/">
+          <div class="flex items-center relative cursor-pointer whitespace-nowrap">
             kanka
           </div>
         </a>
       </div>
-      <!-- end login -->
+      <div class="inline-flex">
+        {% if user.is_authenticated %}
+        <a class="inline-block py-2 px-3 hover:bg-crimson-600 rounded-sm" href="/accounts/profile/">{{request.user}}</a>
+        <a class="inline-block py-2 px-3 hover:bg-crimson-600 rounded-sm" href"/">mailbox</a>
+        <a class="inline-block py-2 px-3 hover:bg-crimson-600 rounded-sm" href="/accounts/logout/">logout</a>
+        {% else %}
+        <a class="inline-block py-2 px-3 hover:bg-crimson-600 rounded-sm" href="/accounts/login/">login</a>
+        {% endif %}
+      </div>
     </nav>
+<!-- end of navbar -->
 
     <div class="container mx-auto">
       <section class="flex items-center justify-center h-screen">
