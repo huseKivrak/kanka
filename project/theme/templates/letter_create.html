@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}write a letter{% endblock title %}
+
+{% block content %}
+<form method="post" action="/letters/create/">
+  {% csrf_token %}
+  <label for="title">title:</label>
+  <input type="text" name="title" id="title" />
+  <br />
+  <label for="body">body:</label>
+  <textarea name="body" id="body"></textarea>
+  <br />
+  <label for="recipient">recipient:</label>
+  <select name="recipient" id="recipient" required>
+    {% for user in users %}
+    <option value="{{ user.id }}">{{ user.username }}</option>
+    {% endfor %}
+  </select>
+  <br />
+
+  <input type="submit" name="save_draft_button" value="save as draft" />
+  <input type="submit" name="send_button" value="send" />
+</form>
+{% endblock content %}

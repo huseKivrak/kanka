@@ -38,10 +38,10 @@ class CustomUser(AbstractUser, PermissionsMixin):
     )
 
     zip_code = models.CharField(
-        max_length=10,
+        max_length=5,
         validators=[RegexValidator(
-            regex='^[0-9]{5}(?:-[0-9]{4})?$|^$',
-            message='Zip code must be in the format XXXXX or XXXXX-XXXX',
+            regex='^[0-9]{5}$',
+            message='Zip code must be exactly 5 digits',
             code='invalid_zip_code'
         )]
     )

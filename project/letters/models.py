@@ -3,6 +3,8 @@ from django.db import models
 from django.utils import timezone
 from core.utils import TrackingModel
 
+from letters.utils.google_api import DeliveryEstimator
+
 User = get_user_model()
 
 class LetterQuerySet(models.QuerySet):
@@ -70,16 +72,28 @@ class Letter(TrackingModel):
         on_delete=models.CASCADE,
         null=True,
         related_name='owned_letters',
-        default=author,
+        default=None,
     )
 
     letters = LetterQuerySet.as_manager()
 
+
     def send(self):
+        """
+        Use Google API to estimate delivery date and save it to the letter
+        """
+
         self.status = 'sent'
         self.sent_date = timezone.now()
-        # TODO: update with ZipCodeAPI value
-        self.delivery_date = self.sent_date + timezone.timedelta(days=1)
+
+        author_zip_code = self.author.zip_code
+        recipient_zip_code = self.recipient.zip_code
+
+        estimator = DeliveryEstimator()
+        delivery_date = estimator.get_delivery_date(
+            author_zip_code, recipient_zip_code, self.sent_date)
+
+        self.delivery_date = delivery_date
         self.save()
 
     def deliver(self):
@@ -94,6 +108,11 @@ class Letter(TrackingModel):
 
     def is_owned_by(self, user):
         return self.owner == user
+
+    def save(self, *args, **kwargs):
+        if not self.owner_id:
+            self.owner_id = self.author_id
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
