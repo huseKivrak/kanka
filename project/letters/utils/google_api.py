@@ -78,7 +78,13 @@ class DeliveryEstimator:
             distance = self.get_distance_between_zip_codes(zip1, zip2)
             delivery_days = self.estimate_delivery_days(distance)
             delivery_date = self.calculate_delivery_date(send_date, delivery_days)
+
+            # Add 1 day if delivery date falls on a Sunday
+            if delivery_date.weekday() == 6:
+                delivery_date += timezone.timedelta(days=1)
+
             return delivery_date
+
         except Exception as e:
             print(f"failed to get delivery date: {e}")
             return None
