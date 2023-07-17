@@ -111,7 +111,10 @@ class Letter(TrackingModel):
 
     def save(self, *args, **kwargs):
         if not self.owner_id:
-            self.owner_id = self.author_id
+            if self.status == 'draft':
+                self.owner_id = self.author_id
+            else:
+                self.owner_id = self.recipient_id
         super().save(*args, **kwargs)
 
     def __str__(self):
