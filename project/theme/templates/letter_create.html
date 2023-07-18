@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
+
 {% block title %}write a letter{% endblock title %}
 
+
 {% block content %}
+
 <form method="post" action="/letters/create/">
   {% csrf_token %}
   <label for="title">title:</label>
@@ -10,15 +13,35 @@
   <label for="body">body:</label>
   <textarea name="body" id="body"></textarea>
   <br />
-  <label for="recipient">recipient:</label>
-  <select name="recipient" id="recipient" required>
+  <label
+    for="recipient"
+    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+    >recipient:</label
+  >
+  <select
+    name="recipient"
+    id="recipient"
+    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+    required
+  >
+    <option selected disabled value="">choose a recipient</option>
     {% for user in users %}
     <option value="{{ user.id }}">{{ user.username }}</option>
     {% endfor %}
   </select>
   <br />
 
-  <input type="submit" name="save_draft_button" value="save as draft" />
-  <input type="submit" name="send_button" value="send" />
+  <input
+    type="submit"
+    name="save_draft_button"
+    value="save as draft"
+    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+  />
+  <input
+    type="submit"
+    name="send_button"
+    value="send"
+    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+  />
 </form>
 {% endblock content %}
