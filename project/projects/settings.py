@@ -40,10 +40,6 @@ INSTALLED_APPS = [
     'accounts',
     'letters',
 
-    'tailwind',
-    'theme',
-    'django_browser_reload',
-
     'django_apscheduler',
 ]
 
@@ -63,7 +59,7 @@ ROOT_URLCONF = 'projects.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'theme' / 'templates'],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -133,9 +129,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
-TAILWIND_APP_NAME = 'theme'
-
-NPM_BIN_PATH = '/usr/local/bin/npm'
 
 INTERNAL_IPS = [
     "127.0.0.1",
