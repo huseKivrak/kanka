@@ -1,12 +1,11 @@
 
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, re_path
+from django.views.generic import TemplateView
+from core import views
 
 urlpatterns = [
-    path('', include('core.urls')),
-    path('accounts/', include('accounts.urls')),
-    path('letters/', include('letters.urls', namespace='letters',)),
-    path("__reload__/", include("django_browser_reload.urls")),
     path('admin/', admin.site.urls),
+    re_path(r"^.*$", TemplateView.as_view(template_name="base.html")),
 ]
 

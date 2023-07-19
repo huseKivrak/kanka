@@ -19,7 +19,7 @@ def start():
     scheduler.add_job(
         deliver_letters,
         'interval',
-        minutes=1,
+        hours=1,
         id='deliver_letters',
         replace_existing=True,
     )
