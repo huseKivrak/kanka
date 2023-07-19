@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
-from . forms import CustomUserCreationForm
+from . forms import CustomUserCreationForm, CustomAuthenticationForm
 from letters.models import mailbox_count_for
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def register(request):
@@ -22,29 +25,32 @@ def register(request):
 
 def login(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(
-            request,
-            username=username,
-            password=password,
-        )
-        if user is not None:
-            auth_login(request, user)
-            messages.success(request, "You have logged in.")
-            return redirect('profile')
-        else:
-            messages.error(request, "Invalid username or password.")
-            return render(request, "login.html")
+        form = CustomAuthenticationForm(data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=username, password=password)
+            logger.debug("user:  %s", user)
 
-    return render(request, "login.html")
+            if user is not None:
+                auth_login(request, user)
+                messages.success(request, "You have logged in.")
+                return redirect('profile')
+            else:
+                messages.error(request, "Invalid username or password.")
+        else:
+            messages.error(request, form.errors)
+
+    else:
+        form = CustomAuthenticationForm()
+    return render(request, "login.html", {'form': form})
 
 
 def profile(request):
     user = request.user
     mailbox_count = mailbox_count_for(user)
     context = {
-        'user':user,
+        'user': user,
         'mailbox_count': mailbox_count
     }
     return render(request, "profile.html", context)
