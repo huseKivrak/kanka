@@ -1155,6 +1155,16 @@ select {
   color: rgb(43 43 51 / var(--tw-text-opacity));
 }
 
+.hover\:text-chartreuse-400:hover {
+  --tw-text-opacity: 1;
+  color: rgb(123 133 113 / var(--tw-text-opacity));
+}
+
+.hover\:text-chartreuse-100:hover {
+  --tw-text-opacity: 1;
+  color: rgb(200 205 196 / var(--tw-text-opacity));
+}
+
 .focus\:border-blue-500:focus {
   --tw-border-opacity: 1;
   border-color: rgb(107 107 126 / var(--tw-border-opacity));

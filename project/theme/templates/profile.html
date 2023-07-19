@@ -2,7 +2,7 @@
 {% block title %}{{request.user}}{% endblock title %}
 
 {% block content %}
-<h1 class="text-chartreuse-700">{{ request.user }}</h1>
+<a class="inline-block py-2 px-3 text-chartreuse-200 hover:text-chartreuse-100 rounded-sm" href="/letters/create/">write a letter</a>
 <p>you have {{ mailbox_count }} unopened letters!</p>
 
 {% endblock content %}
