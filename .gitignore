@@ -2,3 +2,4 @@
 .env
 project/theme/static/
 project/theme/static_src/
+staticfiles/
