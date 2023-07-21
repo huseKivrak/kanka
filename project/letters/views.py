@@ -1,18 +1,22 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from . models import Letter, mailbox_count_for
+from .forms import LetterForm
 
 User = get_user_model()
 
-
+@login_required
 def create(request):
     if request.method == "POST":
-        title = request.POST["title"]
-        body = request.POST["body"]
-        author = request.user
-        recipient_id = request.POST["recipient"]
-        recipient = User.objects.get(id=recipient_id)
+        form = LetterForm(data=request.POST)
+        if form.is_valid():
+            title = form.cleaned_data["title"]
+            body = form.cleaned_data["body"]
+            author = request.user
+            recipient_id = request.POST["recipient"]
+            recipient = User.objects.get(id=recipient_id)
 
         letter = Letter.letters.create(
             title=title,
@@ -34,6 +38,7 @@ def create(request):
         }
         return render(request, "letter_create.html", context)
 
+@login_required
 def detail(request, pk):
     letter = Letter.letters.get(pk=pk)
     context = {
@@ -41,6 +46,7 @@ def detail(request, pk):
     }
     return render(request, "letter_detail.html", context)
 
+@login_required
 def mailbox(request):
     user = request.user
     mailbox_count = mailbox_count_for(user)
@@ -49,3 +55,13 @@ def mailbox(request):
         'mailbox_count': mailbox_count
     }
     return render(request, "mailbox.html", context)
+
+@login_required
+def drafts(request):
+    user = request.user
+    drafts = Letter.letters.drafts().filter(author=user)
+
+    context = {
+        "drafts": drafts,
+    }
+    return render(request, "letter_drafts.html", context)

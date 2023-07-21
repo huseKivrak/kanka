@@ -6,5 +6,6 @@ app_name = "letters"
 urlpatterns = [
     path("create/", views.create, name="create"),
     path("detail/<int:pk>/", views.detail, name="detail"),
-    path("mailbox/", views.mailbox, name="mailbox")
+    path("mailbox/", views.mailbox, name="mailbox"),
+    path("drafts/", views.drafts, name="drafts")
 ]

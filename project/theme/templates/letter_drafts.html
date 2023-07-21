@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}drafts{% endblock %}
+
+{% block content %}
+
+<h1 class="text-chartreuse-900">drafts</h1>
+
+{% if not drafts %}
+<p>you have no drafts</p>
+<a href="/letters/create/"><p class="text-chartreuse-700">write one!</p></a>
+{% endif %}
+
+{% for draft in drafts %}
+<p>{{draft.body}}</p>
+{% endfor %}
+
+{% endblock %}
