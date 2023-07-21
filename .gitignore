@@ -3,3 +3,6 @@
 project/theme/static/
 project/theme/static_src/
 staticfiles/
+
+# ignore all migrations:
+**/migrations/
