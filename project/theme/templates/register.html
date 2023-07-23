@@ -4,6 +4,16 @@
 {% block content%}
   <form method="post" action="/accounts/register/">
     {% csrf_token %}
-    {{ form.as_p }}
+    <label for="username">username</label>
+    <input type="text" name="username" id="username" />
+    <label for="email">email</label>
+    <input type="email" name="email" id="email" />
+    <label for="password">password</label>
+    <input type="password" name="password1" id="password" />
+    <label for="password">password again</label>
+    <input type="password" name="password2" id="password" />
+    <label for="zip_code">zip code</label>
+    <input type="text" name="zip_code" id="zip_code" />
+
     <button type="submit">register</button>
 {% endblock content%}

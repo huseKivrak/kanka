@@ -1,9 +1,8 @@
 from django.forms import ModelForm
 from .models import Letter
 from django import forms
-from django_summernote.fields import SummernoteTextFormField
+
 class LetterForm (ModelForm):
-    body = SummernoteTextFormField()
     class Meta:
         model = Letter
         fields = ["title", "body", "recipient"]

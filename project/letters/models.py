@@ -3,7 +3,8 @@ from django.db import models
 from django.utils import timezone
 from core.utils import TrackingModel
 
-from django_summernote.fields import SummernoteTextField
+from ckeditor.fields import RichTextField
+
 
 from letters.utils.google_api import DeliveryEstimator
 
@@ -53,7 +54,7 @@ class Letter(TrackingModel):
         max_length=100,
     )
 
-    body = SummernoteTextField()
+    body = RichTextField(config_name='default')
 
     author = models.ForeignKey(
         User,

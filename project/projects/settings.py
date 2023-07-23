@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -45,6 +46,9 @@ INSTALLED_APPS = [
     'django_browser_reload',
 
     'django_apscheduler',
+
+    'ckeditor',
+
 ]
 
 MIDDLEWARE = [
@@ -125,6 +129,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -135,7 +144,7 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 TAILWIND_APP_NAME = 'theme'
 
-NPM_BIN_PATH = '/usr/local/bin/npm'
+NPM_BIN_PATH = '/opt/homebrew/bin/npm'
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -152,5 +161,27 @@ LOGGING = {
     'root': {
         'handlers': ['console'],
         'level': 'DEBUG',
+    },
+}
+
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript',],
+            ['TextColor', 'BGColor'],
+            [ 'Outdent', 'Indent', '-', 'NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['RemoveFormat',],
+        ],
+        'extraPlugins': ','.join(['colordialog', 'font']),
+        'removePlugins': 'elementspath',
+        'uiColor': '#F7B42C',
+        'toolbarCanCollapse': True,
+        'height': 300,
+        'width': '100%',
+        'autoGrow_onStartup': True,
+
     },
 }

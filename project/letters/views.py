@@ -32,19 +32,19 @@ def create(request):
 
 
     else:
-        users = User.objects.all()
-        context = {
-            "users": users,
-        }
-        return render(request, "letter_create.html", context)
+        form = LetterForm()
+
+    users = User.objects.all()
+    context = {
+        "users": users,
+        "form": form,
+    }
+    return render(request, "letter_create.html", context)
 
 @login_required
 def detail(request, pk):
     letter = Letter.letters.get(pk=pk)
-    context = {
-        "letter": letter,
-    }
-    return render(request, "letter_detail.html", context)
+    return render(request, "letter_detail.html", {"letter": letter})
 
 @login_required
 def mailbox(request):

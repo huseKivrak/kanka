@@ -3,11 +3,11 @@
 
 {% block content %}
 
-<h1 class="text-chartreuse-900">drafts</h1>
+<h1 class="text-chartreuse-800">drafts</h1>
 
 {% if not drafts %}
 <p>you have no drafts</p>
-<a href="/letters/create/"><p class="text-chartreuse-700">write one!</p></a>
+<a href="/letters/create/"><p class="text-chartreuse-100">write one!</p></a>
 {% endif %}
 
 {% for draft in drafts %}

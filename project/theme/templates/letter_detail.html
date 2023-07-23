@@ -2,7 +2,10 @@
 {% block title %}{{letter.title}}{% endblock title %}
 
 {% block content %}
-<h1>{{letter.title}}</h1>
-<p>{{letter.body}}</p>
+<div class="letter-title">
+  <h1>{{letter.title}}</h1>
+<div class="letter-body">
+<p>{{letter.body | safe }}</p>
+</div>
 <p>from: {{letter.author}}</p>
 {% endblock content %}
