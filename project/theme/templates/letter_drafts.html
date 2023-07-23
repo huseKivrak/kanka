@@ -11,7 +11,7 @@
 {% endif %}
 
 {% for draft in drafts %}
-<p>{{draft.body}}</p>
+<p>{{draft.body | safe}}</p>
 {% endfor %}
 
 {% endblock %}
