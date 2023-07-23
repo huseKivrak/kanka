@@ -50,11 +50,8 @@ def detail(request, pk):
 def mailbox(request):
     user = request.user
     mailbox_count = mailbox_count_for(user)
-    context = {
-        'user': user,
-        'mailbox_count': mailbox_count
-    }
-    return render(request, "mailbox.html", context)
+
+    return render(request, "mailbox.html", {'mailbox_count': mailbox_count})
 
 @login_required
 def drafts(request):
