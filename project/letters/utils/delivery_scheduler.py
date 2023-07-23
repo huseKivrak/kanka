@@ -24,4 +24,4 @@ def start():
         replace_existing=True,
     )
 
-    scheduler.start()
+    # scheduler.start()
