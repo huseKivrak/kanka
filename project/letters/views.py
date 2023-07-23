@@ -61,7 +61,5 @@ def drafts(request):
     user = request.user
     drafts = Letter.letters.drafts().filter(author=user)
 
-    context = {
-        "drafts": drafts,
-    }
-    return render(request, "letter_drafts.html", context)
+
+    return render(request, "letter_drafts.html", {"drafts": drafts})
