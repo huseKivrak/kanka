@@ -7,13 +7,13 @@
 
 {% if not drafts %}
 <p>you have no drafts</p>
-<a href="/letters/create/"><p class="text-chartreuse-100">write one!</p></a>
+<a href="{% url 'letters:create' %}"><p class="text-chartreuse-100">write one!</p></a>
 {% endif %}
 
 {% for draft in drafts %}
 <ul>
   <li>
-    <a href="/letters/{{ draft.id }}/"><p class="text-chartreuse-100">{{ draft.title }}</p></a>
+    <a href="{% url 'letters:create' pk=draft.id %}"><p class="text-chartreuse-100">{{ draft.title }}</p></a>
   </li>
 </ul>
 {% endfor %}

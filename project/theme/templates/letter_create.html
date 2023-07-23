@@ -5,7 +5,10 @@
 
 {% block content %}
 
-<form method="post" action="/letters/create/">
+<form
+  method="post"
+  action="{% if letter %}/letters/create/{{ letter.pk }}/{% else %}/letters/create/{% endif %}"
+>
   {% csrf_token %}
   {{ form.media }}
 
@@ -18,6 +21,7 @@
   <input
     type="text"
     name="title"
+    value="{% if letter %}{{ letter.title }}{% endif %}"
     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
     id="title"
   />
@@ -35,16 +39,6 @@
   <p class="text-red-500 text-xs italic">{{ form.errors }}</p>
   {% endif %}
 
-  <!-- <textarea
-
-class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-
-name="body"
-
-id="body"
-
-></textarea> -->
-
   <br />
 
   <select
@@ -53,14 +47,21 @@ id="body"
     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
     required
   >
+
+  <!-- Preselect recipient if editing a draft -->
+    {% if letter %}
+    <option selected value="{{ letter.recipient.pk }}">{{ letter.recipient.username }}</option>
+    {% else %}
     <option selected disabled value="">choose a recipient</option>
+    {% endif %}
 
+    <!-- don't repeat preselected recipient -->
     {% for user in users %}
-
-    <option value="{{ user.id }}">{{ user.username }}</option>
-
+    {% if not letter or user.pk != letter.recipient.pk %}
+    <option value="{{ user.pk }}">{{ user.username }}</option>
+    {% endif %}
     {% endfor %}
-  </select>
+</select>
 
   <br />
 
