@@ -11,7 +11,11 @@
 {% endif %}
 
 {% for draft in drafts %}
-<p>{{draft.body | safe}}</p>
+<ul>
+  <li>
+    <a href="/letters/{{ draft.id }}/"><p class="text-chartreuse-100">{{ draft.title }}</p></a>
+  </li>
+</ul>
 {% endfor %}
 
 {% endblock %}
