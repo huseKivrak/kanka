@@ -1,23 +1,40 @@
 {% extends 'base.html' %}
 {% block title %}kanka{% endblock %}
 
-
 {% block content %}
 <div class="w-full md:max-w-2xl mx-auto text-center">
-{% if user.is_authenticated %}
-    {% if messages %}
+
+  {% if user.is_authenticated %}
+
+  {% if messages %}
     {% for message in messages %}
     <h1 class="text-chartreuse-100 mb-4">{{ message }}</h1>
     {% endfor %}
     {% endif %}
+
     <div class="w-full md:max-w-2xl mx-auto text-center">
-      <a class="inline-block py-2 px-3 text-chartreuse-200 hover:text-chartreuse-100 rounded-sm" href="/letters/create/">write a letter</a>
-      <a class="inline-block py-2 px-3 text-chartreuse-200 hover:text-chartreuse-100 rounded-sm" href="/letters/drafts/">drafts</a>
-    </div>
-{% else %}
+    <a
+      class="inline-block py-2 px-3 text-chartreuse-200 hover:text-chartreuse-100 rounded-sm"
+      href="/letters/create/"
+      >write a letter</a
+    >
+    <a
+      class="inline-block py-2 px-3 text-chartreuse-200 hover:text-chartreuse-100 rounded-sm"
+      href="/letters/drafts/"
+      >drafts</a
+    >
+  </div>
+  {% else %}
+  <!-- unauthorized homepage: -->
   <h1 class="text-chartreuse-100 mb-4">welcome to kanka</h1>
-  <h2 class="text-chartreuse-200 mb-4 text-sm">a virtual letter correspondance service</h2>
-  <a class="inline-block py-2 px-3 text-chartreuse-100 rounded-sm" href="/accounts/register/">sign up</a>
+  <h2 class="text-chartreuse-200 mb-4 text-sm">
+    a virtual letter correspondence service
+  </h2>
+  <a
+    class="inline-block py-2 px-3 text-chartreuse-100 rounded-sm"
+    href="/accounts/register/"
+    >sign up</a
+  >
   {% endif %}
 </div>
 {% endblock %}
