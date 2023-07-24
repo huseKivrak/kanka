@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
-{% block title %}welcome{% endblock %}
+{% block title %}kanka{% endblock %}
 {% block content %}
 {% if user.is_authenticated %}
   <h1 class="text-chartreuse-100 mb-4">welcome back, {{request.user}}</h1>
   {% else %}
   <h1 class="text-chartreuse-100 mb-4">welcome to kanka</h1>
-  <a class="inline-block py-2 px-3 text-chartreuse-100 bg-crimson-400 hover:bg-crimson-600 rounded-sm" href="/accounts/register/">sign up</a>
+  <h2 class="text-chartreuse-200 mb-4 text-sm">a virtual letter correspondance service</h2>
+  <a class="inline-block py-2 px-3 text-chartreuse-100 rounded-sm" href="/accounts/register/">sign up</a>
   {% endif %}
 {% endblock %}
