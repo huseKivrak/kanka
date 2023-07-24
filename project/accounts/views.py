@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 def register(request):
     if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
+        form = CustomUserCreationForm(data=request.POST)
         if form.is_valid():
             new_user = form.save()
             new_user = authenticate(username=form.cleaned_data['username'],
@@ -34,7 +34,6 @@ def login(request):
 
             if user is not None:
                 auth_login(request, user)
-                messages.success(request, "You have logged in.")
                 return redirect('profile')
             else:
                 messages.error(request, "Invalid username or password.")
