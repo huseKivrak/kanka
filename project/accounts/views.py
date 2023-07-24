@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
 from . forms import CustomUserCreationForm, CustomAuthenticationForm
-from letters.models import mailbox_count_for
+from django.contrib.auth.decorators import login_required
 import logging
 
 logger = logging.getLogger(__name__)
@@ -34,7 +34,8 @@ def login(request):
 
             if user is not None:
                 auth_login(request, user)
-                return redirect('profile')
+                messages.info(request, f'welcome back, {user.username}!')
+                return redirect('/')
             else:
                 messages.error(request, "Invalid username or password.")
         else:
@@ -44,15 +45,9 @@ def login(request):
         form = CustomAuthenticationForm()
     return render(request, "login.html", {'form': form})
 
-
+@login_required
 def profile(request):
-    user = request.user
-    mailbox_count = mailbox_count_for(user)
-    context = {
-        'user': user,
-        'mailbox_count': mailbox_count
-    }
-    return render(request, "profile.html", context)
+    return render(request, "profile.html")
 
 
 def logout(request):
