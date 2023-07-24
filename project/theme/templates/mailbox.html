@@ -2,5 +2,7 @@
 {% block title %}mailbox{% endblock %}
 
 {% block content %}
-<h1> you have <b>{{ mailbox_count }}</b> unopened letters!</h1>
+<div class="w-full max-w-2xl mx-auto px-6 py-8 text-center">
+  <h1 class="text-lg text-chartreuse-100 font-medium">You have <b>{{ mailbox_count }}</b> unopened letters!</h1>
+</div>
 {% endblock %}

@@ -4,90 +4,85 @@
 {% block title %}write a letter{% endblock title %}
 
 {% block content %}
+<div class="w-full md:max-w-2xl mx-auto text-center">
+  <form
+    method="post"
+    action="{% if letter %}/letters/create/{{ letter.pk }}/{% else %}/letters/create/{% endif %}"
+    class="flex flex-col items-center"
+    >
 
-<form
-  method="post"
-  action="{% if letter %}/letters/create/{{ letter.pk }}/{% else %}/letters/create/{% endif %}"
->
-  {% csrf_token %}
-  {{ form.media }}
+    {% csrf_token %}
+    {{ form.media }}
 
-  <label
-    for="title"
-    class="block mb-2 text-sm font-medium text-white"
-    >title:</label
-  >
+    <label for="title" class="block mb-2 text-sm font-medium text-white"
+      >title:</label
+    >
 
-  <input
-    type="text"
-    name="title"
-    placeholder="just for your reference; the recipient won't see it"
-    value="{% if letter %}{{ letter.title }}{% endif %}"
-    class="text-white text-sm p-2 bg-gray-700 w-full min-w-0 border border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 block placeholder-gray-400"
-  />
+    <input
+      type="text"
+      name="title"
+      placeholder="just for your reference; the recipient won't see it"
+      value="{% if letter %}{{ letter.title }}{% endif %}"
+      class="text-white text-sm p-2 bg-gray-700 w-1/2 border border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 block placeholder-gray-400"
+    />
 
-  {% if form.errors.title %}
-  <div class="text-violet-500 text-sm italic">{{ form.errors.title }}</div>
-  {% endif %}
-
-  <br />
-
-  <label
-    for="body"
-    class="block mb-2 text-sm font-medium text-white"
-    >letter:</label
-  >
-  {{ form.body }}
-
-
-  {% if form.errors.body %}
-  <div class="text-red-600 text-sm italic">{{ form.errors.body }}</div>
-  {% endif %}
-
-
-  <br />
-
-
-  <select
-    name="recipient"
-    id="recipient"
-    class="text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 mt-0 bg-gray-700 border-gray-600 placeholder-gray-400"
-    required
-  >
-
-  <!-- Preselect recipient if editing a draft -->
-    {% if letter %}
-    <option selected value="{{ letter.recipient.pk }}">{{ letter.recipient.username }}</option>
-    {% else %}
-    <option selected disabled value="">choose a recipient</option>
+    {% if form.errors.title %}
+    <div class="text-red-600 text-sm italic">{{ form.errors.title }}</div>
     {% endif %}
 
-    <!-- don't repeat preselected recipient if editing a draft-->
-    {% for user in users %}
-    {% if not letter or user.pk != letter.recipient.pk %}
-    <option value="{{ user.pk }}">{{ user.username }}</option>
+    <br />
+
+    <label for="body" class="block mb-2 text-sm font-medium text-white"
+      >letter:</label
+    >
+    {{ form.body }} {% if form.errors.body %}
+    <div class="text-red-600 text-sm italic">{{ form.errors.body }}</div>
     {% endif %}
-    {% endfor %}
-</select>
 
-  <br />
-<div class="flex items-center justify-center space-x-10">
-  <input
-    type="submit"
-    name="save_draft_button"
-    value="save as draft"
-    class="text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 bg-rose-400 border-gray-600 placeholder-gray-400"
-  />
+    <br />
 
+    <select
+      name="recipient"
+      id="recipient"
+      class="text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 mt-0 bg-gray-700 border-gray-600 placeholder-gray-400"
+      required
+    >
+      <!-- Preselect recipient if editing a draft -->
+      {% if letter %}
+      <option selected value="{{ letter.recipient.pk }}">
+        {{ letter.recipient.username }}
+      </option>
+      {% else %}
+      <option selected disabled value="">choose a recipient</option>
+      {% endif %}
 
-  <input
-    type="submit"
-    name="send_button"
-    value="send"
-    class="text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 bg-spring_green-300 border-gray-600 placeholder-gray-400"
-  />
+      <!-- don't repeat preselected recipient if editing a draft-->
+      {% for user in users %}
+        {% if not letter or user.pk != letter.recipient.pk %}
+        <option value="{{ user.pk }}">{{ user.username }}</option>
+        {% endif %}
+      {% endfor %}
+    </select>
+
+    <br />
+
+    <div class="flex items-center justify-center space-x-10">
+      <input
+        type="submit"
+        name="save_draft_button"
+        value="save as draft"
+        class="text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 bg-rose-400 border-gray-600 placeholder-gray-400"
+      />
+
+      <input
+        type="submit"
+        name="send_button"
+        value="send"
+        class="text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 bg-spring_green-300 border-gray-600 placeholder-gray-400"
+      />
+
+    </div>
+  </form>
 </div>
-</form>
-
 
 {% endblock content %}

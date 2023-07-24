@@ -1,19 +1,78 @@
 {% extends 'base.html' %}
 {% block title %}kanka: register{% endblock %}
 
-{% block content%}
+{% block content %}
+
+<div class="w-full max-w-xs mx-auto py-8">
   <form method="post" action="/accounts/register/">
     {% csrf_token %}
-    <label for="username">username</label>
-    <input type="text" name="username" id="username" />
-    <label for="email">email</label>
-    <input type="email" name="email" id="email" />
-    <label for="password">password</label>
-    <input type="password" name="password1" id="password" />
-    <label for="password">password again</label>
-    <input type="password" name="password2" id="password" />
-    <label for="zip_code">zip code</label>
-    <input type="text" name="zip_code" id="zip_code" />
+    <div class="mb-4">
+      <label for="username" class="block mb-2 text-sm font-medium text-white"
+        >username</label
+      >
+      <input
+        type="text"
+        name="username"
+        id="username"
+        class="text-white text-sm p-2 bg-gray-700 w-full min-w-0 border border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 block placeholder-gray-400 mt-0.5"
+      />
+    </div>
 
-    <button type="submit">register</button>
+    <div class="mb-4">
+      <label for="email" class="block mb-2 text-sm font-medium text-white"
+        >email</label
+      >
+      <input
+        type="email"
+        name="email"
+        id="email"
+        class="text-white text-sm p-2 bg-gray-700 w-full min-w-0 border border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 block placeholder-gray-400 mt-0.5"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label for="password" class="block mb-2 text-sm font-medium text-white"
+        >password</label
+      >
+      <input
+        type="password"
+        name="password1"
+        id="password"
+        class="text-white text-sm p-2 bg-gray-700 w-full min-w-0 border border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 block placeholder-gray-400 mt-0.5"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label for="password" class="block mb-2 text-sm font-medium text-white"
+        >password again</label
+      >
+      <input
+        type="password"
+        name="password2"
+        id="password"
+        class="text-white text-sm p-2 bg-gray-700 w-full min-w-0 border border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 block placeholder-gray-400 mt-0.5"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label for="zip_code" class="block mb-2 text-sm font-medium text-white"
+        >zip code</label
+      >
+      <input
+        type="text"
+        name="zip_code"
+        id="zip_code"
+        class="text-white text-sm p-2 bg-gray-700 w-full min-w-0 border border-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500 block placeholder-gray-400 mt-0.5"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="text-white text-sm mt-6 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 bg-spring_green-200 border-gray-600 placeholder-gray-400"
+    >
+      register
+    </button>
+  </form>
+</div>
+
 {% endblock content%}

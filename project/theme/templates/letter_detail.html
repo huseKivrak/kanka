@@ -1,11 +1,9 @@
-{% extends 'base.html' %}
-{% block title %}{{letter.title}}{% endblock title %}
-
+{% extends 'base.html' %} {% block title %}{{letter.title}}{% endblock title %}
 {% block content %}
-<div class="letter-title">
+<div class="w-full md:max-w-2xl mx-auto text-center">
   <h1>{{letter.title}}</h1>
-<div class="letter-body">
-<p>{{letter.body | safe }}</p>
+  <div class="letter-body">
+    <p>{{letter.body | safe }}</p>
+  </div>
 </div>
-<p>from: {{letter.author}}</p>
-{% endblock content %}
+  {% endblock content %}

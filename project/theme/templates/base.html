@@ -9,7 +9,9 @@
     {% tailwind_css %}
   </head>
 
-  <body class="bg-spring_green-400 font-serif leading-normal tracking-wide">
+  <body
+    class="bg-spring_green-400 font-serif leading-normal tracking-wide flex flex-col"
+  >
     <!-- navbar -->
     <nav
       class="w-full flex relative justify-between items-center mx-auto px-8 h-20 text-yellow-100"
@@ -43,9 +45,7 @@
     </nav>
     <!-- end of navbar -->
 
-    <div
-      class="container mx-auto flex flex-col justify-center items-center h-screen"
-    >
+    <main class="w-full flex-grow">
       {% if messages %}
       <div class="space-y-4">
         {% for message in messages %}
@@ -57,8 +57,9 @@
         {% endfor %}
       </div>
       {% endif %} {% block content %} {% endblock content %}
-    </div>
-    <footer class="fixed bottom-0 left-0 right-0 py-4">
+    </main>
+
+    <footer class="py-2">
       <div class="container mx-auto text-center">
         <p class="text-yellow-100 font-extralight text-xs">
           &copy; huse kivrak
