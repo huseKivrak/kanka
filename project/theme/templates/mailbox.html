@@ -1,8 +1,17 @@
 {% extends 'base.html' %}
-{% block title %}mailbox{% endblock %}
+{% block title %}{{request.user}}'s mailbox{% endblock %}
 
 {% block content %}
 <div class="w-full max-w-2xl mx-auto px-6 py-8 text-center">
-  <h1 class="text-lg text-chartreuse-100 font-medium">You have <b>{{ mailbox_count }}</b> unopened letters!</h1>
+  <h1 class="text-4xl text-chartreuse-100 font-medium">mailbox</h1>
+  {% if mailbox_count %}
+  <h2 class="text-2xl text-chartreuse-200 font-light">
+    {{mailbox_count}} letters
+  </h2>
+  {% else %}
+  <h2 class="text-2xl text-chartreuse-200 font-light">
+    no letters
+  </h2>
+  {% endif %}
 </div>
 {% endblock %}

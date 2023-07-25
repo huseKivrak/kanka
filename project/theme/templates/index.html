@@ -1,18 +1,14 @@
 {% extends 'base.html' %}
 {% block title %}kanka{% endblock %}
 
+
 {% block content %}
 <div class="w-full md:max-w-2xl mx-auto text-center">
+  {% if user.is_authenticated %} {% if messages %} {% for message in messages %}
+  <h1 class="text-chartreuse-100 mb-4">{{ message }}</h1>
+  {% endfor %} {% endif %}
 
-  {% if user.is_authenticated %}
-
-  {% if messages %}
-    {% for message in messages %}
-    <h1 class="text-chartreuse-100 mb-4">{{ message }}</h1>
-    {% endfor %}
-    {% endif %}
-
-    <div class="w-full md:max-w-2xl mx-auto text-center">
+  <div class="w-full md:max-w-2xl mx-auto text-center">
     <a
       class="inline-block py-2 px-3 text-chartreuse-200 hover:text-chartreuse-100 rounded-sm"
       href="/letters/create/"
@@ -25,16 +21,52 @@
     >
   </div>
   {% else %}
+
   <!-- unauthorized homepage: -->
-  <h1 class="text-chartreuse-100 mb-4">welcome to kanka</h1>
-  <h2 class="text-chartreuse-200 mb-4 text-sm">
-    a virtual letter correspondence service
+
+  <h1 class="text-white mb-0 tracking-widest text-4xl">
+    welcome to kanka
+  </h1>
+  <h2 class="text-chartreuse-50 mb-4 text-lg">
+    modern letter correspondence
   </h2>
-  <a
-    class="inline-block py-2 px-3 text-chartreuse-100 rounded-sm"
+
+  <div class="mb-10">
+    <h3 class="text-chartreuse-100">
+      send and recieve custom letters in real-time
+      <br/>
+
+    </h3>
+      <ul class="mt-2 text-sm">
+        <li class="text-chartreuse-100"> • fully customizable letters</li>
+        <li class="text-chartreuse-100"> • accurate delivery times</li>
+        <li class="text-chartreuse-100"> • snail mail stuff</li>
+      </ul>
+  </div>
+
+  <div class="mb-10">
+    <a
+    class="inline-block text-chartreuse-100 hover:text-chartreuse-50 text-lg"
     href="/accounts/register/"
     >sign up</a
+    >
+  </div>
+
+
+  <p class="text-chartreuse-100 text-sm">already a member?</p>
+  <a
+  class="inline-block py-1 px-3 text-lg text-chartreuse-100 hover:text-chartreuse-50"
+  href="/accounts/login/"
+  >login here</a
   >
+
+  <div class="mt-6">
+    <h3 id="" class="text-chartreuse-50 text-md tracking-widest">...what's a "kanka"?</h3>
+    <span class="text-chartreuse-100 text-xs">
+      just Turkish slang for a close friend!
+    </span>
+
+  </div>
   {% endif %}
 </div>
 {% endblock %}

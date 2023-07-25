@@ -3,19 +3,19 @@
 
 {% block content %}
 <div class="w-full max-w-2xl mx-auto px-6 py-8 text-center">
-  <h1 class="text-lg font-medium text-chartreuse-800">your drafts</h1>
+  <h1 class="text-2xl text-chartreuse-50 tracking-wider">your drafts</h1>
 
   {% if not drafts %}
-  <p class="text-white text-sm mt-4">you have no drafts</p>
-  <a href="{% url 'letters:create' %}" class="text-chartreuse-100">write one!</a>
+    <p class="text-chartreuse-100 text-sm mt-4">you have no drafts</p>
+    <a href="{% url 'letters:create' %}" class="text-chartreuse-100">write one!</a>
   {% else %}
-  {% for draft in drafts %}
-  <ul class="list-none mt-2 text-white text-sm">
-    <li>
-      <a href="{% url 'letters:create' pk=draft.id %}" class="text-chartreuse-100">{{ draft.title }}</a>
-    </li>
-  </ul>
-  {% endfor %}
+    {% for draft in drafts %}
+    <ul class="list-none mt-2 text-white text-sm">
+      <li>
+        <a href="{% url 'letters:create' pk=draft.id %}" class="text-chartreuse-100">{{ draft.title }}</a>
+      </li>
+    </ul>
+    {% endfor %}
   {% endif %}
 </div>
 {% endblock %}

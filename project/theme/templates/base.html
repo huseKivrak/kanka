@@ -10,11 +10,12 @@
   </head>
 
   <body
-    class="bg-spring_green-400 font-serif leading-normal tracking-wide flex flex-col"
+    class="bg-spring_green-400 font-serif leading-normal tracking-wide flex flex-col min-h-screen"
   >
+
     <!-- navbar -->
     <nav
-      class="w-full flex relative justify-between items-center mx-auto px-8 h-20 text-yellow-100"
+      class="w-full flex relative justify-between items-center mx-auto px-8 h-10 text-yellow-100"
     >
       <div class="inline-flex">
         <a class="inline-block py-2 px-3 rounded-sm" href="/">
@@ -27,11 +28,11 @@
       </div>
       <div class="inline-flex">
         {% if user.is_authenticated %}
-        <a class="inline-block py-2 px-3 rounded-sm" href="/accounts/profile/"
-          >{{request.user}}</a
-        >
         <a class="inline-block py-2 px-3 rounded-sm" href="/letters/mailbox/"
-          >mailbox</a
+        >mailbox</a
+        >
+        <a class="inline-block py-2 px-3 rounded-sm" href="/accounts/profile/"
+          >profile</a
         >
         <a class="inline-block py-2 px-3 rounded-sm" href="/accounts/logout/"
           >logout</a
@@ -45,18 +46,23 @@
     </nav>
     <!-- end of navbar -->
 
+
     <main class="w-full flex-grow">
-      {% if messages %}
-      <div class="space-y-4">
+      <!-- {% if messages %}
+      <div class="space-y-4 text-center">
         {% for message in messages %}
         <div
-          class="{% if message.tags %}alert {% if message.tags == 'error' %}bg-red-500{% elif message.tags == 'warning' %}bg-yellow-500{% elif message.tags == 'info' %}bg-blue-500{% else %}bg-green-500{% endif %}{% endif %} p-4 rounded-md text-white"
+          class="{% if message.tags %} alert inline-block text-xs p-1 text-white
+          {% if message.tags == 'error' %}bg-rose-600{% elif message.tags == 'info' %}bg-blue-500{% else %}bg-green-500{% endif %}{% endif %}"
         >
           {{ message }}
         </div>
         {% endfor %}
       </div>
-      {% endif %} {% block content %} {% endblock content %}
+      {% endif %} -->
+
+      {% block content %}
+      {% endblock content %}
     </main>
 
     <footer class="py-2">
