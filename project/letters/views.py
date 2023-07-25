@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse
+from django.contrib import messages
 from . models import Letter, mailbox_count_for
 from .forms import LetterForm
 
@@ -30,7 +30,10 @@ def create(request, pk=None):
 
             if 'send_button' in request.POST:
                 letter.send()
-            return redirect(reverse("letters:detail", kwargs={"pk": letter.pk}))
+                messages.info(request, f'letter sent to {letter.recipient.username}!')
+            else:
+                messages.info(request, f'"{letter.title}" saved as draft!')
+            return redirect("/")
 
     else:
         form = LetterForm(instance=letter)
@@ -43,47 +46,7 @@ def create(request, pk=None):
     }
     return render(request, "letter_create.html", context)
 
-    # if request.method == "POST":
-    #     form = LetterForm(data=request.POST, instance=letter)
-    #     if form.is_valid():
-    #         title = form.cleaned_data["title"]
-    #         body = form.cleaned_data["body"]
-    #         author = request.user
-    #         recipient_id = request.POST["recipient"]
-    #         recipient = User.objects.get(id=recipient_id)
 
-    #         if letter:
-    #             letter.title = title
-    #             letter.body = body
-    #             letter.author = author
-    #             letter.recipient = recipient
-    #             letter.save()
-    #         else:
-    #             letter = Letter.letters.create(
-    #                 title=title,
-    #                 body=body,
-    #                 author=author,
-    #                 recipient=recipient,
-    #             )
-
-    #         if 'send_button' in request.POST:
-    #             letter.send()
-
-    #         return redirect(reverse("letters:detail", kwargs={"pk": letter.pk}))
-
-    # else:
-    #     if letter:
-    #         form = LetterForm(instance=letter)
-    #     else:
-    #         form = LetterForm()
-
-    # users = User.objects.all()
-    # context = {
-    #     "users": users,
-    #     "form": form,
-    #     "letter": letter,
-    # }
-    # return render(request, "letter_create.html", context)
 
 
 @login_required
