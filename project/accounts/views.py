@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from . models import CustomUser, FriendRequest
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib import messages
 from . forms import CustomUserCreationForm, CustomAuthenticationForm
@@ -45,6 +46,7 @@ def login(request):
         form = CustomAuthenticationForm()
     return render(request, "login.html", {'form': form})
 
+
 @login_required
 def profile(request):
     return render(request, "profile.html")
@@ -54,3 +56,16 @@ def logout(request):
     auth_logout(request)
     messages.success(request, "You have been logged out.")
     return redirect('/')
+
+
+@login_required
+def friend_request(request, pk):
+    if request.method == 'POST':
+        from_user = request.user
+        to_user = CustomUser.objects.get(pk=pk)
+        FriendRequest.objects.create(from_user=from_user, to_user=to_user)
+        messages.info(request, f'friend request sent to {to_user.username}!')
+        return redirect('/')
+
+    else:
+        return render(request, "friend_request.html")
